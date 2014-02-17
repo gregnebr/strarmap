@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.clementscode</groupId>
+  <artifactId>starmap</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Clements Star Map</name>
+  <description>map of the sky</description>
+
+
+<dependencies>                                      
+                                
+  <dependency>                                      
+    <groupId>org.hibernate</groupId>                
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>3.6.8.Final</version>                  
+  </dependency>                                     
+  <dependency>                                      
+    <groupId>org.apache.derby</groupId>             
+    <artifactId>derby</artifactId>                  
+    <version>10.8.2.2</version>                     
+    <scope>runtime</scope>                          
+  </dependency>                                     
+  <!-- 
+     an slf4j implementation is needed by
+     hibernate so that it could log its *stuff*
+  -->
+  <dependency>                                      
+    <groupId>org.slf4j</groupId>                    
+    <artifactId>slf4j-simple</artifactId>           
+    <version>1.6.4</version>                        
+    <scope>runtime</scope>                          
+  </dependency>                                     
+ <dependency>                                      
+    <groupId>net.sf.opencsv</groupId>                
+    <artifactId>opencsv</artifactId>
+    <version>2.3</version>                  
+  </dependency>                                     
+                               
+</dependencies> 
+
+    
+
+</project>                                
