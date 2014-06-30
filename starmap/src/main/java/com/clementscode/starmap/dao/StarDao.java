@@ -10,6 +10,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
+
 import au.com.bytecode.opencsv.CSVReader;
 
 import com.clementscode.starmap.Constants;
@@ -23,20 +25,30 @@ public class StarDao {
 
 	public boolean dbExists() {
 		Query query = em.createQuery("SELECT a FROM StarData a");
-		return query.setMaxResults(1).getResultList().isEmpty();
+		return !query.setMaxResults(1).getResultList().isEmpty();
 	}
 
+	private static final Object DB_MUTEX = new Object();
+
+	/**
+	 * @param env
+	 *            request envelope in right ascension, declination
+	 * @param dimmest
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	// parameters RA range, Declination Range, dimmest star magnitude
-	public Collection<StarData> querydb(double xmin, double xmax, double ymin,
-			double ymax, double dimmest) {
+	public Collection<StarData> querydb(ReferencedEnvelope env, double dimmest) {
 		// just curious on how long the query takes
 		long startTime = System.nanoTime();
 		// use createNativeQuery for SQL style query
 
-		Query query = em
-				.createQuery(buildQuery(xmin, xmax, ymin, ymax, dimmest));
-		Collection<StarData> all = (Collection<StarData>) query.getResultList();
+		Query query = em.createQuery(buildQuery(env, dimmest));
+		Collection<StarData> all;
+		synchronized (DB_MUTEX) {
+			all = (Collection<StarData>) query.getResultList();
+		}
+
 		long estimatedTime = System.nanoTime() - startTime;
 		System.out.println("Elapsed time is " + estimatedTime / 1000000
 				+ " milliseconds for query");
@@ -44,8 +56,11 @@ public class StarDao {
 
 	}
 
-	public static String buildQuery(double raLow, double raHigh,
-			double declnLow, double declnHigh, double dimmest) {
+	public static String buildQuery(ReferencedEnvelope env, double dimmest) {
+		double raLow = env.getMinX();
+		double raHigh = env.getMaxX();
+		double declnLow = env.getMinY();
+		double declnHigh = env.getMaxY();
 		// make sure the coordinates are in range
 		if (declnLow < -90.0) {
 			declnLow = -90.0;

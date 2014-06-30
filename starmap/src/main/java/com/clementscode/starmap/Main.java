@@ -2,6 +2,8 @@ package com.clementscode.starmap;
 
 import java.util.Collection;
 
+import org.geotools.geometry.jts.ReferencedEnvelope;
+
 import com.clementscode.starmap.dao.StarDao;
 
 public class Main {
@@ -21,11 +23,12 @@ public class Main {
 				System.out.println("The StarData db already exists");
 				// this query sets the RA range, the Declination range, and the
 				// dimmest magnitude
-				Collection<StarData> data = dao.querydb(2.0, 9.0, -30.0, 30.0,
-						5.0);
+				ReferencedEnvelope env = new ReferencedEnvelope(2.0, 10.0,
+						-40.0, 40.0, null);
+				Collection<StarData> data = dao.querydb(env, 6.0);
 				System.out.println(data.size()
 						+ " records match the query in the database");
-				SpatialConverter.render(data);
+				SpatialConverter.render(data, 800, 400);
 				// for (StarData data : all) {
 				// System.out.println(data);
 				// }
