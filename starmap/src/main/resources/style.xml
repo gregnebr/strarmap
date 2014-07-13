@@ -6,13 +6,43 @@
       <Title>Stars magnitude controls size of point</Title>
       <FeatureTypeStyle>
         <Rule>
-          <Name>dimstar</Name>
-          <Title>4th mag and dimmer</Title>
+          <Name>5thMag</Name>
+          <Title>5th mag and dimmer</Title>
           <ogc:Filter>
             <ogc:PropertyIsGreaterThanOrEqualTo>
               <ogc:PropertyName>mag</ogc:PropertyName>
-              <ogc:Literal>4.0</ogc:Literal>
+              <ogc:Literal>5.0</ogc:Literal>
             </ogc:PropertyIsGreaterThanOrEqualTo>
+          </ogc:Filter>
+          <PointSymbolizer>
+            <Graphic>
+              <Mark>
+                <WellKnownName>circle</WellKnownName>
+                <Fill>
+                  <CssParameter name="fill">#FFFFFF</CssParameter>
+                </Fill>
+              </Mark>
+              <Size>1</Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+        
+        
+        
+        <Rule>
+          <Name>medium</Name>
+          <Title>4th to 5th magnitude</Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsGreaterThanOrEqualTo>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>4.0</ogc:Literal>
+              </ogc:PropertyIsGreaterThanOrEqualTo>
+              <ogc:PropertyIsLessThan>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>5.0</ogc:Literal>
+              </ogc:PropertyIsLessThan>
+            </ogc:And>
           </ogc:Filter>
           <PointSymbolizer>
             <Graphic>
@@ -26,14 +56,15 @@
             </Graphic>
           </PointSymbolizer>
         </Rule>
-        <Rule>
+ 
+ <Rule>
           <Name>medium</Name>
-          <Title>2 to 4th magnitude</Title>
+          <Title>3rd to 4th magnitude</Title>
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsGreaterThanOrEqualTo>
                 <ogc:PropertyName>mag</ogc:PropertyName>
-                <ogc:Literal>2.0</ogc:Literal>
+                <ogc:Literal>3.0</ogc:Literal>
               </ogc:PropertyIsGreaterThanOrEqualTo>
               <ogc:PropertyIsLessThan>
                 <ogc:PropertyName>mag</ogc:PropertyName>
@@ -49,17 +80,77 @@
                   <CssParameter name="fill">#FFFFFF</CssParameter>
                 </Fill>
               </Mark>
+              <Size>3</Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+ 
+ 
+ <Rule>
+          <Name>medium</Name>
+          <Title>2nd to 3rd magnitude</Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsGreaterThanOrEqualTo>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>2.0</ogc:Literal>
+              </ogc:PropertyIsGreaterThanOrEqualTo>
+              <ogc:PropertyIsLessThan>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>3.0</ogc:Literal>
+              </ogc:PropertyIsLessThan>
+            </ogc:And>
+          </ogc:Filter>
+          <PointSymbolizer>
+            <Graphic>
+              <Mark>
+                <WellKnownName>circle</WellKnownName>
+                <Fill>
+                  <CssParameter name="fill">#FFFFFF</CssParameter>
+                </Fill>
+              </Mark>
               <Size>4</Size>
             </Graphic>
           </PointSymbolizer>
         </Rule>
+ 
+ 
+ <Rule>
+          <Name>medium</Name>
+          <Title>1st to 2nd magnitude</Title>
+          <ogc:Filter>
+            <ogc:And>
+              <ogc:PropertyIsGreaterThanOrEqualTo>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>1.0</ogc:Literal>
+              </ogc:PropertyIsGreaterThanOrEqualTo>
+              <ogc:PropertyIsLessThan>
+                <ogc:PropertyName>mag</ogc:PropertyName>
+                <ogc:Literal>2.0</ogc:Literal>
+              </ogc:PropertyIsLessThan>
+            </ogc:And>
+          </ogc:Filter>
+          <PointSymbolizer>
+            <Graphic>
+              <Mark>
+                <WellKnownName>circle</WellKnownName>
+                <Fill>
+                  <CssParameter name="fill">#FFFFFF</CssParameter>
+                </Fill>
+              </Mark>
+              <Size>5</Size>
+            </Graphic>
+          </PointSymbolizer>
+        </Rule>
+ 
+ 
         <Rule>
           <Name>bright</Name>
-          <Title>Brighter than 2nd mag</Title>
+          <Title>Brighter than 1st mag</Title>
           <ogc:Filter>
             <ogc:PropertyIsLessThan>
               <ogc:PropertyName>mag</ogc:PropertyName>
-              <ogc:Literal>2.0</ogc:Literal>
+              <ogc:Literal>1.0</ogc:Literal>
             </ogc:PropertyIsLessThan>
           </ogc:Filter>
           <PointSymbolizer>
